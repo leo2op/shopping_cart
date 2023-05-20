@@ -1,0 +1,33 @@
+{% extends 'temp/base.html' %}
+{% load static %}
+{% block content %}
+<html>
+<html>
+<head>
+  <title>Ecommerce Website - Products</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/temp/products.css' %}">
+</head>
+<body>
+<div align="center">
+  <div class="container">
+    <h2>Products</h2>
+    {% for product in products %}
+    <div class="product">
+      <img src="{{ product.p_image.url }}" alt="Product 1">
+      <div class="product-details">
+        <div class="product-name">{{product.p_name}}</div>
+        <div class="product-price">₹{{product.p_price}}</div>
+        <form action="/cart/add_to_cart/">
+        {% csrf_token %}
+          <input type="hidden" name="p_id" value="{{product.p_id}}" id="p_id">
+        <button type="submit" class="add-to-cart">Add to Cart</button>
+        </form>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+        <a href="/cart" class="cart-link"><br><i class="fa-solid fa-cart-shopping fa-bounce fa-2xl" style="color: #4caf50;"></i></a>
+</body>
+</html>
+{% endblock %}

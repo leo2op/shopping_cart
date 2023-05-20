@@ -1,0 +1,68 @@
+{% load static %}
+<html>
+  <head>
+    <title>{% block title %} {% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/temp/base.css' %}">
+  <script src="https://kit.fontawesome.com/fed5f2402d.js" crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <img class="e-commerce-logo" src="{% static 'home/img/e-commerce-logo.png' %}" alt="logo">
+      </div>
+      <ul class="nav-links">
+        <li><a href="/cart">Cart</a></li>
+        <li><a href="#bottom">About</a></li>
+        <li><a href="#bottom">Contact</a></li>
+        <li><a href="/home/">Logout</a></li>
+      </ul>
+    </nav>
+{% block navbar %} {% endblock %}
+
+
+
+      <div class="block-elements">
+{% block content %} {% endblock %}
+  </div>
+
+<footer id="bottom">
+  <div class="footer-container">
+    <div class="footer-column">
+      <h3>Thank You for Choosing Us!</h3>
+<p>Thank you for choosing us as your preferred online shopping destination. We look forward to serving you and becoming your go-to source for all your shopping needs.</p>
+    </div>
+    <div class="footer-column">
+      <h3>Customer Service</h3>
+      <ul>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Shipping Information</a></li>
+        <li><a href="#">Returns &amp; Exchanges</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Connect with Us</h3>
+      <ul class="social-icons">
+        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Subscribe to Our Newsletter</h3>
+      <form class="newsletter-form">
+        <input type="email" name="email" placeholder="Enter your email">
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+
+</footer>
+
+
+
+  </body>
+</html>

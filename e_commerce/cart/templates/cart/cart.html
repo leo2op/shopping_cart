@@ -1,0 +1,87 @@
+{% load static %}
+
+<html>
+<head>
+  <title>Cart Page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/temp/cart.css' %}">
+</head>
+<body>
+  <nav>
+    <div class="logo">
+      <img class="e-commerce-logo" src="{% static 'home/img/e-commerce-logo.png' %}" alt="logo">
+    </div>
+    <ul class="nav-links">
+      <li><a href="/products">Products</a></li>
+      <li><a href="#bottom">About</a></li>
+      <li><a href="#bottom">Contact</a></li>
+      <li><a href="/home/">Logout</a></li>
+    </ul>
+  </nav>
+
+<div class="container">
+  <h1>Cart Page</h1>
+  <div class="cart-items">
+    {% for cart_item in cart_items %}
+    <div class="cart-item">
+      <img src="{{ cart_item.p.p_image.url }}" alt="{{ cart_item.p.p_name }}">
+      <div class="cart-item-content">
+        <h2>{{ cart_item.p.p_name }}</h2>
+        <p>Price: ₹{{ cart_item.p.p_price }}</p>
+        <form action="{% url 'update_cart' cart_item.cartitem_id %}" method="post">
+          {% csrf_token %}
+          <input type="number" name="quantity" value="{{ cart_item.quantity }}" min="0">
+      </div>
+      <button type="submit" class="update-cart">Update Cart</button>
+        </form>
+      <a href="{% url 'remove_item' cart_item.cartitem_id %}" class="remove-item" data-id="{{ cart_item.cartitem_id }}">Remove Item</a>
+    </div>
+    {% empty %}
+    <div class="empty-cart">
+      <img src="{% static 'home/img/empty-cart.webp' %}" alt="Empty cart">
+            <a href="/products" class="update-cart">Continue Shopping</a>
+    </div>
+    {% endfor %}
+  </div>
+  <h2 class="total">Total: ₹{{ cart.total }}</h2>
+  <button class="checkout">Checkout</button>
+</div>
+
+
+
+  <footer id="bottom">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>Thank You for Choosing Us!</h3>
+        <p>Thank you for choosing us as your preferred online shopping destination. We look forward to serving you and becoming your go-to source for all your shopping needs.</p>
+      </div>
+      <div class="footer-column">
+        <h3>Customer Service</h3>
+        <ul>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Shipping Information</a></li>
+          <li><a href="#">Returns &amp; Exchanges</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Connect with Us</h3>
+        <ul class="social-icons">
+          <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+          <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Subscribe to Our Newsletter</h3>
+        <form class="newsletter-form">
+          <input type="email" name="email" placeholder="Enter your email">
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+  </footer>
+
+</body>
+
+</html>
